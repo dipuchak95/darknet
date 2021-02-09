@@ -380,11 +380,11 @@ void train_detector(char *datacfg, char *cfgfile, char *weightfile, int *gpus, i
         draw_train_loss(windows_name, img, img_size, avg_loss, max_img_loss, iteration, net.max_batches, mean_average_precision, draw_precision, "mAP%", avg_contrastive_acc / 100, dont_show, mjpeg_port, avg_time);
 #endif    // OPENCV
 
-        //if (i % 1000 == 0 || (i < 1000 && i % 100 == 0)) {
-        //if (i % 100 == 0) {
-        if ((iteration >= (iter_save + 1000) || iteration % 1000 == 0) ||
-            (iteration >= (iter_save + 1000) || iteration % 1000 == 0) && net.max_batches < 1000)
-        {
+        if (iteration % 1000 == 0 || (iteration < 1000 && iteration % 100 == 0)) {
+        if (iteration % 100 == 0) {
+//         if ((iteration >= (iter_save + 1000) || iteration % 1000 == 0) ||
+//             (iteration >= (iter_save + 1000) || iteration % 1000 == 0) && net.max_batches < 1000)
+//         {
             iter_save = iteration;
 #ifdef GPU
             if (ngpus != 1) sync_nets(nets, ngpus, 0);
